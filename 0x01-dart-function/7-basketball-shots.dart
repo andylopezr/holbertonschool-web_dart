@@ -1,27 +1,13 @@
-num getPoints(Map team) {
-  num points = 0;
-  team.forEach((key, value) {
-    if (key == 'Free throws') {
-      points += value;
-    } else if (key == '2 pointers') {
-      points += value * 2;
-    } else if (key == '3 pointers') {
-      points += value * 3;
-    }
-  });
-  return points;
-}
-
-num whoWins(Map teamA, Map teamB) {
-  // get the points of each team
-  num teamAPoints = getPoints(teamA);
-  num teamBPoints = getPoints(teamB);
-  // compare the points
-  if (teamAPoints > teamBPoints) {
-    return 1;
-  } else if (teamAPoints < teamBPoints) {
-    return 2;
-  } else {
-    return 0;
-  }
+int whoWins(Map<String, int> team1, Map<String, int> team2) {
+  // ! is null check in case shape of map is not correct
+  // Would have preferred loop with value multiplied by key + 1 but no time currently
+  var team1Total = team1['Free throws']! +
+      team1['2 pointers']! * 2 +
+      team1['3 pointers']! * 3;
+  var team2Total = team2['Free throws']! +
+      team2['2 pointers']! * 2 +
+      team2['3 pointers']! * 3;
+  if (team1Total > team2Total) return 1;
+  if (team1Total < team2Total) return 2;
+  return 0;
 }
